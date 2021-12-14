@@ -6,18 +6,48 @@
     <title>Bonjour</title>
     <link rel="icon" href="/assets/images/favicon.png">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+
+
+        td {
+            border: 1px solid #333;
+            margin: auto;
+        }
+
+        thead,
+        tfoot {
+            background-color: #333;
+            color: #fff;
+        }
+
+    </style>
 </head>
 
 <body>
-    <h1>Hello, welcome to products!</h1>
-    {{ dump(products) }}
+<h1>Hello, welcome to products!</h1>
 
-//boucler sur le tableau et afficher les produits dans des blocs distincts, à raison de 3 articles par ligne
+<!-- boucler sur le tableau et afficher les produits dans des blocs distincts, à raison de 3 articles par ligne -->
 
-    {% for product in products %}
-        <div class="span4">
-            <h2>{{ product }}</h2>
-        </div>
-    {% endfor %}
+<table>
+    <thead>
+    <tr>
+        <th colspan="3">Instruments:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {% for product in products | slice(0, 3) %}
+            <td>{{ product }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for product in products | slice(3, 6) %}
+            <td>{{ product }}</td>
+        {% endfor %}
+    </tr>
+    </tbody>
+</table>
+<br>
+{{ dump(products) }}
 </body>
 </html>
